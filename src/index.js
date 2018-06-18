@@ -73,12 +73,13 @@ async function parseBills($) {
 
   let billsLines = $('#cphContenu_gvHistoFactures > tbody')
     // get rid of hided lines and inline tables
-    .children('tr:not([style="display:none"])');
+    .children('tr:not([style="display:none"])')
 
-  let bills = billsLines.filter(function (i, el) {
-    return $(el).children('td').length > 1
-  })
-    .map(function (i, el) {
+  let bills = billsLines
+    .filter(function(i, el) {
+      return $(el).children('td').length > 1
+    })
+    .map(function(i, el) {
       return {
         title: $(el)
           .children()
@@ -117,25 +118,30 @@ async function parseBills($) {
         }
       }
     })
-    .toArray();
+    .toArray()
 
   // Check if there is a next page of bills
-  return bills.concat(await getNextPage($, billsLines));
+  return bills.concat(await getNextPage($, billsLines))
 }
 
 async function getNextPage($, billsLines) {
-
-  const lastTds = $(billsLines).last().children('td');
+  const lastTds = $(billsLines)
+    .last()
+    .children('td')
   if (lastTds.length === 1) {
-    const nextPageTd = lastTds.first().find('td:has(span)').next();
+    const nextPageTd = lastTds
+      .first()
+      .find('td:has(span)')
+      .next()
     if (nextPageTd !== undefined && nextPageTd.children().length > 0) {
-
-      const nextPageLink = nextPageTd.children().first();
-      const nextPageNumber = nextPageLink.text();
-      let nextPageArgs = nextPageLink.attr('href').substring(25); // remove javascript:__doPostBack('
-      let [eventTarget, eventArgument] = nextPageArgs.substring(0, nextPageArgs.length - 2).split(',');
-      eventTarget = eventTarget.substring(0, eventTarget.length - 1);
-      eventArgument = eventArgument.substring(1);
+      const nextPageLink = nextPageTd.children().first()
+      const nextPageNumber = nextPageLink.text()
+      let nextPageArgs = nextPageLink.attr('href').substring(25) // remove javascript:__doPostBack('
+      let [eventTarget, eventArgument] = nextPageArgs
+        .substring(0, nextPageArgs.length - 2)
+        .split(',')
+      eventTarget = eventTarget.substring(0, eventTarget.length - 1)
+      eventArgument = eventArgument.substring(1)
       // in this case signin is used only to submit a form
       const $nextPage = await signin({
         url: `${baseUrl}/AfficherFacture.aspx`,
@@ -146,18 +152,23 @@ async function getNextPage($, billsLines) {
         },
         validate: (statusCode, $) => {
           // check that the page is the page targeted
-          if (statusCode === 200
-            && $(`#cphContenu_gvHistoFactures td > span`).length === 1
-            && $(`#cphContenu_gvHistoFactures td > span`).eq(0).text() === nextPageNumber) {
-            return true;
-          }
-          else {
-            throw new Error(`Error during navigation to page ${nextPageNumber} of bills.`);
+          if (
+            statusCode === 200 &&
+            $(`#cphContenu_gvHistoFactures td > span`).length === 1 &&
+            $(`#cphContenu_gvHistoFactures td > span`)
+              .eq(0)
+              .text() === nextPageNumber
+          ) {
+            return true
+          } else {
+            throw new Error(
+              `Error during navigation to page ${nextPageNumber} of bills.`
+            )
           }
         }
-      });
-      return await parseBills($nextPage);
+      })
+      return await parseBills($nextPage)
     }
   }
-  return [];
+  return []
 }
