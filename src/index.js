@@ -30,21 +30,16 @@ async function start(fields) {
   log('info', 'Authenticating ...')
   await authenticate(fields.login, fields.password)
   log('info', 'Successfully logged in')
-  // The BaseKonnector instance expects a Promise as return of the function
+
   log('info', 'Fetching the list of documents')
   const $ = await request(`${baseUrl}/AfficherFacture.aspx`)
-  // cheerio (https://cheerio.js.org/) uses the same api as jQuery (http://jquery.com/)
   log('info', 'Parsing list of documents')
-  const documents = await parseDocuments($)
 
-  // here we use the saveBills function even if what we fetch are not bills, but this is the most
-  // common case in connectors
+  const bills = await parseBills($)
+
   log('info', 'Saving data to Cozy')
-  await saveBills(documents, fields.folderPath, {
-    // this is a bank identifier which will be used to link bills to bank operations. These
-    // identifiers should be at least a word found in the title of a bank operation related to this
-    // bill. It is not case sensitive.
-    identifiers: ['gaz']
+  await saveBills(bills, fields.folderPath, {
+    identifiers: ['es energies strasbourg', 'es', 'strasbourg', 'energies']
   })
 }
 
@@ -72,17 +67,18 @@ function authenticate(username, password) {
 
 // The goal of this function is to parse a html page wrapped by a cheerio instance
 // and return an array of js objects which will be saved to the cozy by saveBills (https://github.com/konnectors/libs/blob/master/packages/cozy-konnector-libs/docs/api.md#savebills)
-function parseDocuments($) {
+async function parseBills($) {
   // you can find documentation about the scrape function here :
   // https://github.com/konnectors/libs/blob/master/packages/cozy-konnector-libs/docs/api.md#scrape
 
-  let docs = $('#cphContenu_gvHistoFactures > tbody')
+  let billsLines = $('#cphContenu_gvHistoFactures > tbody')
     // get rid of hided lines and inline tables
-    .children('tr:not([style="display:none"])')
-    .filter(function(i, el) {
-      return $(el).children('td').length > 1
-    })
-    .map(function(i, el) {
+    .children('tr:not([style="display:none"])');
+
+  let bills = billsLines.filter(function (i, el) {
+    return $(el).children('td').length > 1
+  })
+    .map(function (i, el) {
       return {
         title: $(el)
           .children()
@@ -121,7 +117,47 @@ function parseDocuments($) {
         }
       }
     })
-    .toArray()
+    .toArray();
 
-  return docs
+  // Check if there is a next page of bills
+  return bills.concat(await getNextPage($, billsLines));
+}
+
+async function getNextPage($, billsLines) {
+
+  const lastTds = $(billsLines).last().children('td');
+  if (lastTds.length === 1) {
+    const nextPageTd = lastTds.first().find('td:has(span)').next();
+    if (nextPageTd !== undefined && nextPageTd.children().length > 0) {
+
+      const nextPageLink = nextPageTd.children().first();
+      const nextPageNumber = nextPageLink.text();
+      let nextPageArgs = nextPageLink.attr('href').substring(25); // remove javascript:__doPostBack('
+      let [eventTarget, eventArgument] = nextPageArgs.substring(0, nextPageArgs.length - 2).split(',');
+      eventTarget = eventTarget.substring(0, eventTarget.length - 1);
+      eventArgument = eventArgument.substring(1);
+      // in this case signin is used only to submit a form
+      const $nextPage = await signin({
+        url: `${baseUrl}/AfficherFacture.aspx`,
+        formSelector: '#formMaster',
+        formData: {
+          __EVENTTARGET: eventTarget,
+          __EVENTARGUMENT: eventArgument
+        },
+        validate: (statusCode, $) => {
+          // check that the page is the page targeted
+          if (statusCode === 200
+            && $(`#cphContenu_gvHistoFactures td > span`).length === 1
+            && $(`#cphContenu_gvHistoFactures td > span`).eq(0).text() === nextPageNumber) {
+            return true;
+          }
+          else {
+            throw new Error(`Error during navigation to page ${nextPageNumber} of bills.`);
+          }
+        }
+      });
+      return await parseBills($nextPage);
+    }
+  }
+  return [];
 }
