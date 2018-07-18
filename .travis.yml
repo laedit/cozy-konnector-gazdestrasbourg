@@ -31,12 +31,11 @@ script:
 #   on:
 #     tags: true
 before_install:
-# run the yarn travisDeployKey command to genrate this
-# - openssl aes-256-cbc -K $encrypted_0b21ecdcf920_key -iv $encrypted_0b21ecdcf920_iv
+# - openssl aes-256-cbc -K $encrypted_35a3fe94e096_key -iv $encrypted_35a3fe94e096_iv
 #   -in github_deploy_key.enc -out /tmp/github_deploy_key -d
 # - eval "$(ssh-agent -s)"
 # - chmod 600 /tmp/github_deploy_key
 # - ssh-add /tmp/github_deploy_key
-after_deploy:
+after_deploy: 
 # - rm /tmp/github_deploy_key
 # - ssh-add -D
