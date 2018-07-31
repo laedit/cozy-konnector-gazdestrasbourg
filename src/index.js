@@ -131,11 +131,14 @@ async function parseBills($) {
           .reverse()
           .join('/') + ' 00:00:00 GMT' // had to do this to deal with the month index / timezone issue
       ),
-      amount: Number($(line)
-        .children()
-        .eq(4)
-        .text()
-        .trim().replace (",", ".")),
+      amount: Number(
+        $(line)
+          .children()
+          .eq(4)
+          .text()
+          .trim()
+          .replace(',', '.')
+      ),
       filename: `Facture-${$(line)
         .children()
         .eq(1)
