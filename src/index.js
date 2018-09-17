@@ -18,11 +18,10 @@ const request = requestFactory({
   // this allows request-promise to keep cookies between requests
   jar: true
 })
-const moment = require('moment')
+
 const cheerio = require('cheerio')
 const PassThrough = require('stream').PassThrough
 
-moment.locale('fr')
 const baseUrl = 'https://agence-en-ligne.es-gazdestrasbourg.fr'
 
 module.exports = new BaseKonnector(start)
