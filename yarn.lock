@@ -1414,9 +1414,9 @@ cozy-jobs-cli@1.6.3:
     regenerator-runtime "0.12.1"
     replay "2.4.0"
 
-cozy-konnector-libs@4.12.2:
-  version "4.12.2"
-  resolved "https://registry.yarnpkg.com/cozy-konnector-libs/-/cozy-konnector-libs-4.12.2.tgz#7cf603dbb9f1fb25dd916f76d7b1a2e42cf316ca"
+cozy-konnector-libs@4.12.4:
+  version "4.12.4"
+  resolved "https://registry.yarnpkg.com/cozy-konnector-libs/-/cozy-konnector-libs-4.12.4.tgz#201df9767a4c32e44fd9140664806c5bd5f6df80"
   dependencies:
     bluebird "3.5.3"
     bluebird-retry "0.11.0"
