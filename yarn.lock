@@ -1821,9 +1821,9 @@ escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-eslint-config-cozy-app@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-cozy-app/-/eslint-config-cozy-app-1.3.1.tgz#f2fb4450c97b2d4e7dfcdbae534d50f9fbb12de5"
+eslint-config-cozy-app@1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-cozy-app/-/eslint-config-cozy-app-1.3.2.tgz#91ec714e4471bbfc5b5d042c315b88ad20924a1b"
   dependencies:
     babel-eslint "10.0.1"
     eslint "5.16.0"
@@ -1831,7 +1831,7 @@ eslint-config-cozy-app@1.3.1:
     eslint-plugin-prettier "3.1.0"
     eslint-plugin-react "7.14.3"
     eslint-plugin-vue "5.2.3"
-    prettier "1.16.4"
+    prettier "1.18.2"
 
 eslint-config-prettier@4.3.0:
   version "4.3.0"
@@ -4326,9 +4326,9 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@1.16.4:
-  version "1.16.4"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.16.4.tgz#73e37e73e018ad2db9c76742e2647e21790c9717"
+prettier@1.18.2:
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.18.2.tgz#6823e7c5900017b4bd3acf46fe9ac4b4d7bda9ea"
 
 pretty@2.0.0:
   version "2.0.0"
