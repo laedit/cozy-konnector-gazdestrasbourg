@@ -1157,9 +1157,9 @@ cosmiconfig@^5.2.1:
     js-yaml "^3.13.1"
     parse-json "^4.0.0"
 
-cozy-app-publish@0.19.2:
-  version "0.19.2"
-  resolved "https://registry.yarnpkg.com/cozy-app-publish/-/cozy-app-publish-0.19.2.tgz#55fb0bef703cd19c85ecb5dd2be2f68ccd10a0cc"
+cozy-app-publish@0.19.3:
+  version "0.19.3"
+  resolved "https://registry.yarnpkg.com/cozy-app-publish/-/cozy-app-publish-0.19.3.tgz#b9671551fc45e48c7c8319802cb5761b70c44811"
   dependencies:
     argparse "^1.0.10"
     chalk "2.4.2"
@@ -1169,7 +1169,7 @@ cozy-app-publish@0.19.2:
     node-fetch "2.6.0"
     prompt "1.0.0"
     request "2.88.0"
-    tar "4.4.10"
+    tar "4.4.13"
 
 cozy-client-js@0.16.4, cozy-client-js@^0.16.4:
   version "0.16.4"
@@ -3543,9 +3543,9 @@ minipass@^2.2.1:
     safe-buffer "^5.1.2"
     yallist "^3.0.0"
 
-minipass@^2.3.5:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.5.1.tgz#cf435a9bf9408796ca3a3525a8b851464279c9b8"
+minipass@^2.8.6:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.9.0.tgz#e713762e7d3e32fed803115cf93e04bca9fcc9a6"
   dependencies:
     safe-buffer "^5.1.2"
     yallist "^3.0.0"
@@ -5253,13 +5253,13 @@ tar-pack@^3.4.0:
     tar "^2.2.1"
     uid-number "^0.0.6"
 
-tar@4.4.10:
-  version "4.4.10"
-  resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.10.tgz#946b2810b9a5e0b26140cf78bea6b0b0d689eba1"
+tar@4.4.13:
+  version "4.4.13"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.13.tgz#43b364bc52888d555298637b10d60790254ab525"
   dependencies:
     chownr "^1.1.1"
     fs-minipass "^1.2.5"
-    minipass "^2.3.5"
+    minipass "^2.8.6"
     minizlib "^1.2.1"
     mkdirp "^0.5.0"
     safe-buffer "^5.1.2"
