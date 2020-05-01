@@ -46,7 +46,7 @@
     "git-directory-deploy": "1.5.1",
     "husky": "4.2.3",
     "konitor": "0.10.3",
-    "webpack": "4.42.1",
+    "webpack": "4.43.0",
     "webpack-cli": "3.3.11"
   }
 }
