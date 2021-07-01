@@ -44,7 +44,7 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-config-cozy-app": "2.1.0",
     "git-directory-deploy": "1.5.1",
-    "husky": "4.3.8",
+    "husky": "6.0.0",
     "konitor": "0.10.3",
     "webpack": "5.38.1",
     "webpack-cli": "4.7.0"
