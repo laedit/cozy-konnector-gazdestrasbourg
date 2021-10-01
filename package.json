@@ -42,7 +42,7 @@
     "cozy-jobs-cli": "1.16.2",
     "eslint": "7.32.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-config-cozy-app": "2.1.0",
+    "eslint-config-cozy-app": "2.1.1",
     "git-directory-deploy": "1.5.1",
     "husky": "7.0.2",
     "konitor": "0.10.3",
