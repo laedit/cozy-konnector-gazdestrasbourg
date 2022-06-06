@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "copy-webpack-plugin": "10.2.4",
-    "cozy-app-publish": "0.29.0",
+    "cozy-app-publish": "0.30.2",
     "cozy-jobs-cli": "1.18.0",
     "eslint": "8.14.0",
     "eslint-plugin-prettier": "4.0.0",
