@@ -1478,10 +1478,10 @@ cors@^2.8.5:
     object-assign "^4"
     vary "^1"
 
-cozy-app-publish@0.40.1:
-  version "0.40.1"
-  resolved "https://registry.yarnpkg.com/cozy-app-publish/-/cozy-app-publish-0.40.1.tgz#60108a2f272a979509e71b4900ff0cad8190209b"
-  integrity sha512-Zl+reWNZbbI0fPz3QIgMg/hzK57KHFD4EA25mcYH30MImDMMiIkM4oqjRK8mW9I4qrGUkPJLtkUUMn9x0ibj1Q==
+cozy-app-publish@0.41.0:
+  version "0.41.0"
+  resolved "https://registry.yarnpkg.com/cozy-app-publish/-/cozy-app-publish-0.41.0.tgz#4276e1a10bfd92f8d2058f1d17e8c48d4412cadb"
+  integrity sha512-3lbn0yPG5b/Is59rZeTfweFjSU5VEz2C+a7fkox5+pOPprUL9JK319uT8bVXzkAtQezzcSVGvE4u71fsts1KHg==
   dependencies:
     argparse "^2.0.1"
     chalk "^2.4.2"
